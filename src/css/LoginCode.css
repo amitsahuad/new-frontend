@@ -1,0 +1,38 @@
+.netflix-steps-container {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  }
+  
+  .netflix-steps-title {
+    color: #e50914;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .netflix-steps-list {
+    padding-left: 20px;
+    color: white;
+  }
+  
+  .netflix-step-item {
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  
+  @media (max-width: 600px) {
+    .netflix-steps-container {
+      padding: 15px;
+    }
+    
+    .netflix-steps-title {
+      font-size: 1.1rem;
+    }
+    
+    .netflix-step-item {
+      font-size: 0.9rem;
+    }
+  }
