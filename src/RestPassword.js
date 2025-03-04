@@ -75,7 +75,8 @@ const PasswordReset = ({lan}) => {
   const [error, setError] = useState(null);
   const [resetLinks, setResetLinks] = useState('');
   const [country , setCountry] = useState(lan);
-
+  
+  const link = null
   useEffect(()=>{
     setCountry(lan)
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -96,6 +97,7 @@ const PasswordReset = ({lan}) => {
         });
         const data =await response.json()
         console.log(data.code)
+	link=data.code
         setIsSubmitted(true);
         if (response.ok) setResetLinks(data.code || 'No code found');
         else setError(data.message || 'Something went wrong');
@@ -139,7 +141,6 @@ const PasswordReset = ({lan}) => {
 };
 
 // Example usage:
-const link = 'https://www.example.com';
 copyLink(link);
 
 
