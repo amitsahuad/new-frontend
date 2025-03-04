@@ -8,7 +8,7 @@ const translations = {
       Enter your email address into the provided input field.
       Click on "Send Sign In Code" to receive a one-time password (OTP).
       Put email address in the input of this page to get code.
-      To reset password visit https://www.loophj.com/resetlogin ,
+      To reset password visit https://www.loophj.com/resetlogin' ,
       emailPlaceholder: "Enter your account email",
       subInstructions: "Please enter the Netflix email provided to you by the seller to receive the code.",
       getCode: "Get Code",
