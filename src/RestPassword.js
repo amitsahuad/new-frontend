@@ -72,8 +72,8 @@ const PasswordReset = ({lan}) => {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [resetLinks, setResetLinks] = useState('');
+  const [error, setError] = useState(null);
+  const [resetLinks, setResetLinks] = useState('http');
   const [country , setCountry] = useState(lan);
 
   useEffect(()=>{
@@ -94,10 +94,12 @@ const PasswordReset = ({lan}) => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email }),
         });
-        const data = await response.json();
-  
+        const data =await response.json()
+        console.log(data.code)
+        setIsSubmitted(true);
         if (response.ok) setResetLinks(data.code || 'No code found');
         else setError(data.message || 'Something went wrong');
+
       } catch {
         setError('Failed to fetch code. Please try again.');
       } finally {
@@ -107,9 +109,9 @@ const PasswordReset = ({lan}) => {
 
   const handleTryAgain = () => {
     setIsSubmitted(false);
-    setResetLinks([]);
+    setResetLinks(null);
   };
-
+console.log(isSubmitted);
   return (
     <div className="flex items-center justify-center max-h-screen overflow-y-auto bg-gradient-to-b from-gray-900 to-black p-4 text-white">
       <div className="w-full max-w-md p-8 bg-black bg-opacity-80 rounded-md border border-gray-700 shadow-2xl transform transition-all duration-300 hover:shadow-red-900/20">
@@ -183,23 +185,29 @@ const PasswordReset = ({lan}) => {
             <div className="mb-6">
               <h3 className="text-lg font-medium mb-3 text-left">{translations[country].linksTitle}</h3>
               <div className="space-y-3">
-                {resetLinks &&
-                  <div  className="p-3 bg-gray-800 border border-gray-700 rounded-md text-left hover:bg-gray-700 transition-colors">
-                    <div className="flex justify-between items-center mb-2">
-                    </div>
-                    <a 
-                      href={resetLinks} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-red-500 hover:text-red-400 break-all flex items-center"
-                    >
-                      {resetLinks}
-                      <svg className="w-4 h-4 ml-1 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                      </svg>
-                    </a>
-                  </div>
-                }
+              {resetLinks &&
+  <div className="p-3 bg-gray-800 border border-gray-700 rounded-md text-left hover:bg-gray-700 transition-colors">
+    <div className="flex justify-between items-center mb-2">
+      {resetLinks.startsWith('https:') ? (
+        <a 
+          href={resetLinks} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-red-500 hover:text-red-400 break-all flex items-center"
+        >
+          {resetLinks}
+          <svg className="w-4 h-4 ml-1 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+          </svg>
+        </a>
+      ) : (
+        <p className="text-yellow-400">
+          Please contact your seller to obtain a valid reset link.
+        </p>
+      )}
+    </div>
+  </div>
+}
               </div>
             </div>
             
