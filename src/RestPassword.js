@@ -73,7 +73,7 @@ const PasswordReset = ({lan}) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [resetLinks, setResetLinks] = useState('');
+  const [resetLinks, setResetLinks] = useState('http');
   const [country , setCountry] = useState(lan);
 
   useEffect(()=>{
@@ -111,38 +111,7 @@ const PasswordReset = ({lan}) => {
     setIsSubmitted(false);
     setResetLinks(null);
   };
-
-  const copyLink = (link) => {
-    const tempInput = document.createElement('input');
-    tempInput.value = link;
-    document.body.appendChild(tempInput);
-
-    tempInput.select();
-    tempInput.setSelectionRange(0, 99999); 
-
-    try {
-        if (navigator.clipboard) {
-            navigator.clipboard.writeText(link).then(() => {
-                console.log('Link copied to clipboard!');
-            }).catch(err => {
-                console.error('Error copying text: ', err);
-            });
-        } else {
-            document.execCommand('copy');
-            console.log('Link copied to clipboard!');
-        }
-    } catch (err) {
-        console.error('Error copying link: ', err);
-    }
-
-    document.body.removeChild(tempInput);
-};
-
-// Example usage:
-const link = 'https://www.example.com';
-copyLink(link);
-
-
+console.log(isSubmitted);
   return (
     <div className="flex items-center justify-center max-h-screen overflow-y-auto bg-gradient-to-b from-gray-900 to-black p-4 text-white">
       <div className="w-full max-w-md p-8 bg-black bg-opacity-80 rounded-md border border-gray-700 shadow-2xl transform transition-all duration-300 hover:shadow-red-900/20">
@@ -195,8 +164,6 @@ copyLink(link);
                   translations[country].sendButton
                 )}
               </button>
-            
-
             </form>
           </>
         ) : (
@@ -220,9 +187,8 @@ copyLink(link);
               <div className="space-y-3">
               {resetLinks &&
   <div className="p-3 bg-gray-800 border border-gray-700 rounded-md text-left hover:bg-gray-700 transition-colors">
-    <div className="mb-2">
+    <div className="flex justify-between items-center mb-2">
       {resetLinks.startsWith('https:') ? (
-      <div className='flex flex-col items-center justify-center'>
         <a 
           href={resetLinks} 
           target="_blank" 
@@ -234,12 +200,6 @@ copyLink(link);
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
           </svg>
         </a>
-
-        <button onClick={copyLink(resetLinks)} class="my-4 w-full py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out">
-    Copy Link
-</button>
-       
-      </div>
       ) : (
         <p className="text-yellow-400">
           Please contact your seller to obtain a valid reset link.
