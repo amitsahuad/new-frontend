@@ -4,6 +4,8 @@ import NetflixCoode from './NetflixCoode'
 import  LoginCode  from './LoginCode'
 import Layout from './Layout'
 import PasswordReset from './RestPassword'
+import NotFoundPage from './404'
+import ApiTextInput from './AddEmails'
 
 const App = () => {
   const [lan , setLan] = useState('en')
@@ -18,9 +20,11 @@ const App = () => {
     <BrowserRouter>
     <Routes>
       <Route path='/' element= { <NetflixCoode lan={lan} /> } />
-      <Route path='/login' element={<LoginCode  lan={lan} /> } />
-      <Route path='/reset' element={<PasswordReset  lan={lan}/>} />
+      <Route path='/logincode' element={<LoginCode  lan={lan} /> } />
+      <Route path='/resetlink' element={<PasswordReset  lan={lan}/>} />
       <Route path='/layout' element={<Layout lan={lan} />} />
+      <Route path='/addEmailLoopl123' element={<ApiTextInput />} />
+      <Route path='*' element={<NotFoundPage />} />
    </Routes>
     </BrowserRouter>
     </Layout>

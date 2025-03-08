@@ -1,5 +1,88 @@
 import React, { useEffect, useState } from 'react';
 
+const translations = {
+  en: {
+      title: "Get Your Netflix Login Code",
+      steps: `Open Netflix Login: Go to https://www.netflix.com/login
+  Sign In: Tap or click on the Sign In button.
+      Select Sign-In Code Option: Choose the option labeled "Use a sign-in code."
+      Enter Your Email: Type your registered email address into the provided input field.
+      Request the Code: Click on "Send Sign In Code" to receive a one-time password (OTP).
+      Check Your Email: Open your email inbox and look for the message containing the OTP.
+      Enter the OTP: Input the received OTP in the designated field on your device.
+      Complete Sign In: Tap or click on "Sign In" to access your Netflix account`,
+      emailPlaceholder: "Enter your account email",
+      subInstructions: "Please enter the Netflix email provided to you by the seller to receive the code.",
+      getCode: "Get Code",
+      fetching: "Fetching...",
+      successMessage: "Your Code: ",
+      errorMessage: "An error occurred. Please try again.",
+      toggleSteps: "Show sign in steps",
+      hideSteps: "Hide sign in steps",
+      stepsTitle: "How To Get Your Sign-In Code"
+  },
+  es: {
+      title: "Obtén tu código de inicio de sesión de Netflix",
+      steps: `Abrir Inicio de Sesión de Netflix: Ve a https://www.netflix.com/login
+Iniciar Sesión: Toca o haz clic en el botón "Sign In."
+Seleccionar la Opción de Código de Inicio de Sesión: Elige la opción etiquetada como "Usar un código de inicio de sesión."
+Ingresar tu Correo Electrónico: Escribe tu dirección de correo electrónico registrada en el campo de entrada proporcionado.
+Solicitar el Código: Haz clic en "Enviar Código de Inicio de Sesión" para recibir una contraseña de un solo uso (OTP).
+Revisar tu Correo Electrónico: Abre tu bandeja de entrada y busca el mensaje que contiene el OTP.
+Ingresar el OTP: Introduce el OTP recibido en el campo designado en tu dispositivo.
+Completar Inicio de Sesión: Toca o haz clic en "Sign In" para acceder a tu cuenta de Netflix.`,
+      emailPlaceholder: "Ingresa el correo electrónico de tu cuenta",
+      subInstructions: "Por favor, ingresa el correo electrónico de Netflix proporcionado por el vendedor para recibir el código.",
+      getCode: "Obtener código",
+      fetching: "Cargando...",
+      successMessage: "Tu código: ",
+      errorMessage: "Ocurrió un error. Por favor, inténtalo de nuevo.",
+      toggleSteps: "Mostrar pasos para iniciar sesión",
+      hideSteps: "Ocultar pasos para iniciar sesión",
+      stepsTitle: "Cómo obtener tu código de inicio de sesión"
+  },
+  ph: {
+      title: "Kunin ang Iyong Netflix Login Code",
+      steps: `Buksan ang Netflix Login: Pumunta sa https://www.netflix.com/login
+Mag-sign In: I-tap o i-click ang "Sign In" na button.
+Piliin ang Opsyon ng Sign-In Code: Pumili ng opsyong may label na "Gumamit ng sign-in code."
+Ilagay ang Iyong Email: I-type ang iyong rehistradong email address sa inilaan na input field.
+Hingin ang Code: I-click ang "Ipadala ang Sign-In Code" upang makatanggap ng one-time password (OTP).
+Suriin ang Iyong Email: Buksan ang iyong email inbox at hanapin ang mensahe na naglalaman ng OTP.
+Ilagay ang OTP: I-input ang natanggap na OTP sa itinakdang field sa iyong device.
+Kumpletuhin ang Pag-sign In: I-tap o i-click ang "Sign In" upang ma-access ang iyong Netflix account.`,
+      emailPlaceholder: "I-enter ang iyong account email",
+      subInstructions: "Mangyaring ilagay ang Netflix email na ibinigay sa iyo ng nagbenta upang matanggap ang code.",
+      getCode: "Kunin ang Code",
+      fetching: "Kinukuha...",
+      successMessage: "Iyong Code: ",
+      errorMessage: "Nagkaroon ng error. Paki-subukan muli.",
+      toggleSteps: "Ipakita ang mga hakbang sa pag-sign in",
+      hideSteps: "Itago ang mga hakbang sa pag-sign in",
+      stepsTitle: "Paano Makukuha ang Iyong Sign-In Code"
+  },
+  id: {
+      title: "Dapatkan Kode Masuk Netflix Anda",
+      steps: `Buka Netflix Login: Kunjungi https://www.netflix.com/login
+Masuk: Ketuk atau klik tombol "Sign In."
+Pilih Opsi Kode Masuk: Pilih opsi yang berlabel "Gunakan kode masuk."
+Masukkan Email Anda: Ketik alamat email terdaftar Anda ke dalam kolom input yang disediakan.
+Minta Kode: Klik "Kirim Kode Masuk" untuk menerima kata sandi satu kali (OTP).
+Periksa Email Anda: Buka kotak masuk email Anda dan cari pesan yang berisi OTP.
+Masukkan OTP: Masukkan OTP yang diterima ke dalam kolom yang telah disediakan di perangkat Anda.
+Selesaikan Masuk: Ketuk atau klik "Sign In" untuk mengakses akun Netflix Anda.`,
+      emailPlaceholder: "Masukkan email akun Anda",
+      subInstructions: "Silakan masukkan email Netflix yang diberikan oleh penjual untuk menerima kode.",
+      getCode: "Dapatkan Kode",
+      fetching: "Memuat...",
+      successMessage: "Kode Anda: ",
+      errorMessage: "Terjadi kesalahan. Silakan coba lagi.",
+      toggleSteps: "Tampilkan langkah-langkah masuk",
+      hideSteps: "Sembunyikan langkah-langkah masuk",
+      stepsTitle: "Cara Mendapatkan Kode Masuk Anda"
+  }
+};
+
 const LoginCode = ({lan}) => {
     const [country, setCountry] = useState(lan);
     const [showDropdown, setShowDropdown] = useState(false);
@@ -13,88 +96,7 @@ const LoginCode = ({lan}) => {
         setCountry(lan)
       }, [lan]);
 
-      const translations = {
-        en: {
-            title: "Get Your Netflix Login Code",
-            steps: `Open Netflix: Launch the Netflix app or go to the Netflix website.
-            Sign In: Tap or click on the Sign In button.
-            Select Sign-In Code Option: Choose the option labeled "Use a sign-in code."
-            Enter Your Email: Type your registered email address into the provided input field.
-            Request the Code: Click on "Send Sign In Code" to receive a one-time password (OTP).
-            Check Your Email: Open your email inbox and look for the message containing the OTP.
-            Enter the OTP: Input the received OTP in the designated field on your device.
-            Complete Sign In: Tap or click on "Sign In" to access your Netflix account`,
-            emailPlaceholder: "Enter your account email",
-            subInstructions: "Please enter the Netflix email provided to you by the seller to receive the code.",
-            getCode: "Get Code",
-            fetching: "Fetching...",
-            successMessage: "Your Code: ",
-            errorMessage: "An error occurred. Please try again.",
-            toggleSteps: "Show sign in steps",
-            hideSteps: "Hide sign in steps",
-            stepsTitle: "How To Get Your Sign-In Code"
-        },
-        es: {
-            title: "Obtén tu código de inicio de sesión de Netflix",
-            steps: `Abre Netflix: Inicia la aplicación de Netflix o ve al sitio web de Netflix.
-            Iniciar sesión: Toca o haz clic en el botón Iniciar sesión.
-            Selecciona la opción de código de inicio de sesión: Elige la opción etiquetada como "Usar un código de inicio de sesión."
-            Ingresa tu correo electrónico: Escribe tu dirección de correo electrónico registrada en el campo proporcionado.
-            Solicitar el código: Haz clic en "Enviar código de inicio de sesión" para recibir una contraseña de un solo uso (OTP).
-            Revisa tu correo electrónico: Abre tu bandeja de entrada y busca el mensaje que contiene el OTP.
-            Ingresa el OTP: Ingresa el OTP recibido en el campo designado en tu dispositivo.
-            Completar inicio de sesión: Toca o haz clic en "Iniciar sesión" para acceder a tu cuenta de Netflix.`,
-            emailPlaceholder: "Ingresa el correo electrónico de tu cuenta",
-            subInstructions: "Por favor, ingresa el correo electrónico de Netflix proporcionado por el vendedor para recibir el código.",
-            getCode: "Obtener código",
-            fetching: "Cargando...",
-            successMessage: "Tu código: ",
-            errorMessage: "Ocurrió un error. Por favor, inténtalo de nuevo.",
-            toggleSteps: "Mostrar pasos para iniciar sesión",
-            hideSteps: "Ocultar pasos para iniciar sesión",
-            stepsTitle: "Cómo obtener tu código de inicio de sesión"
-        },
-        ph: {
-            title: "Kunin ang Iyong Netflix Login Code",
-            steps: `Buksan ang Netflix: I-launch ang Netflix app o pumunta sa Netflix website.
-            Mag-sign In: I-tap o i-click ang Sign In na button.
-            Piliin ang Sign-In Code na Opsyon: Pumili ng opsyon na may label na "Gamitin ang sign-in code."
-            I-enter ang Iyong Email: I-type ang iyong nakarehistrong email address sa ibinigay na input field.
-            I-request ang Code: I-click ang "Send Sign In Code" upang makuha ang isang one-time password (OTP).
-            Suriin ang Iyong Email: Buksan ang iyong email inbox at hanapin ang mensahe na naglalaman ng OTP.
-            I-enter ang OTP: Ilagay ang natanggap na OTP sa itinakdang field sa iyong device.
-            Kumpletuhin ang Sign In: I-tap o i-click ang "Sign In" upang ma-access ang iyong Netflix account.`,
-            emailPlaceholder: "I-enter ang iyong account email",
-            subInstructions: "Mangyaring ilagay ang Netflix email na ibinigay sa iyo ng nagbenta upang matanggap ang code.",
-            getCode: "Kunin ang Code",
-            fetching: "Kinukuha...",
-            successMessage: "Iyong Code: ",
-            errorMessage: "Nagkaroon ng error. Paki-subukan muli.",
-            toggleSteps: "Ipakita ang mga hakbang sa pag-sign in",
-            hideSteps: "Itago ang mga hakbang sa pag-sign in",
-            stepsTitle: "Paano Makukuha ang Iyong Sign-In Code"
-        },
-        id: {
-            title: "Dapatkan Kode Masuk Netflix Anda",
-            steps: `Buka Netflix: Jalankan aplikasi Netflix atau buka situs web Netflix.
-            Masuk: Ketuk atau klik tombol Masuk.
-            Pilih Opsi Kode Masuk: Pilih opsi yang bertuliskan "Gunakan kode masuk."
-            Masukkan Email Anda: Ketik alamat email terdaftar Anda pada kolom yang disediakan.
-            Minta Kode: Klik "Kirim Kode Masuk" untuk menerima password satu kali (OTP).
-            Periksa Email Anda: Buka inbox email Anda dan cari pesan yang berisi OTP.
-            Masukkan OTP: Masukkan OTP yang diterima di kolom yang ditentukan di perangkat Anda.
-            Selesaikan Masuk: Ketuk atau klik "Masuk" untuk mengakses akun Netflix Anda.`,
-            emailPlaceholder: "Masukkan email akun Anda",
-            subInstructions: "Silakan masukkan email Netflix yang diberikan oleh penjual untuk menerima kode.",
-            getCode: "Dapatkan Kode",
-            fetching: "Memuat...",
-            successMessage: "Kode Anda: ",
-            errorMessage: "Terjadi kesalahan. Silakan coba lagi.",
-            toggleSteps: "Tampilkan langkah-langkah masuk",
-            hideSteps: "Sembunyikan langkah-langkah masuk",
-            stepsTitle: "Cara Mendapatkan Kode Masuk Anda"
-        }
-    };
+    
     
 
   const handleSubmit = async (e) => {
@@ -171,12 +173,27 @@ const LoginCode = ({lan}) => {
               {translations[country].stepsTitle}
             </h2>
             <ol className="list-decimal pl-4 sm:pl-5 space-y-1 sm:space-y-2 text-xs sm:text-sm">
-              {translations[country].steps.split('\n').map((step, index) => (
-                <li key={index} className="text-gray-300">
-                  {step}
-                </li>
-              ))}
-            </ol>
+            {translations[country].steps.split('\n').map((step, index) => {
+                // Check if the step contains a URL to make it a direct link
+                const urlMatch = step.match(/(https?:\/\/[^\s]+)/);
+                return (
+                    <li key={index} className="text-gray-300">
+                        {urlMatch ? (
+                            <a 
+                                href={urlMatch[1]} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="text-blue-500 hover:underline"
+                            >
+                                {step}
+                            </a>
+                        ) : (
+                            step
+                        )}
+                    </li>
+                );
+            })}
+        </ol>
           </div>
         )}
         

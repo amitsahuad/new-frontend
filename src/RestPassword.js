@@ -72,9 +72,10 @@ const PasswordReset = ({lan}) => {
   const [email, setEmail] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
   const [resetLinks, setResetLinks] = useState('');
   const [country , setCountry] = useState(lan);
+  const [copied , setCopied ] = useState(false);
 
   useEffect(()=>{
     setCountry(lan)
@@ -94,10 +95,12 @@ const PasswordReset = ({lan}) => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email }),
         });
-        const data = await response.json();
-  
+        const data =await response.json()
+        console.log(data.code)
+        setIsSubmitted(true);
         if (response.ok) setResetLinks(data.code || 'No code found');
         else setError(data.message || 'Something went wrong');
+
       } catch {
         setError('Failed to fetch code. Please try again.');
       } finally {
@@ -107,8 +110,45 @@ const PasswordReset = ({lan}) => {
 
   const handleTryAgain = () => {
     setIsSubmitted(false);
-    setResetLinks([]);
+    setResetLinks(null);
   };
+
+  const copyLink = (link) => {
+    console.log(link)
+    const tempInput = document.createElement('input');
+    tempInput.value = link;
+    document.body.appendChild(tempInput);
+
+    tempInput.select();
+    tempInput.setSelectionRange(0, 99999); 
+
+    try {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(link).then(() => {
+                console.log('Link copied to clipboard!');
+                copiedHandler();
+            }).catch(err => {
+                console.error('Error copying text: ', err);
+            });
+        } else {
+            document.execCommand('copy');
+            console.log('Link copied to clipboard!');
+            copiedHandler()
+        }
+    } catch (err) {
+        console.error('Error copying link: ', err);
+    }
+
+    document.body.removeChild(tempInput);
+};
+
+const copiedHandler = () => {
+  setCopied(true);
+  setTimeout(() => {
+    setCopied(false);
+  }, 3000);
+};
+
 
   return (
     <div className="flex items-center justify-center max-h-screen overflow-y-auto bg-gradient-to-b from-gray-900 to-black p-4 text-white">
@@ -162,6 +202,8 @@ const PasswordReset = ({lan}) => {
                   translations[country].sendButton
                 )}
               </button>
+            
+
             </form>
           </>
         ) : (
@@ -183,23 +225,36 @@ const PasswordReset = ({lan}) => {
             <div className="mb-6">
               <h3 className="text-lg font-medium mb-3 text-left">{translations[country].linksTitle}</h3>
               <div className="space-y-3">
-                {resetLinks &&
-                  <div  className="p-3 bg-gray-800 border border-gray-700 rounded-md text-left hover:bg-gray-700 transition-colors">
-                    <div className="flex justify-between items-center mb-2">
-                    </div>
-                    <a 
-                      href={resetLinks} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="text-red-500 hover:text-red-400 break-all flex items-center"
-                    >
-                      {resetLinks}
-                      <svg className="w-4 h-4 ml-1 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                      </svg>
-                    </a>
-                  </div>
-                }
+              {resetLinks &&
+  <div className="p-3 bg-gray-800 border border-gray-700 rounded-md text-left hover:bg-gray-700 transition-colors">
+    <div className="mb-2">
+      {resetLinks.startsWith('https:') ? (
+      <div className='flex flex-col items-center justify-center'>
+        <a 
+          href={resetLinks} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-red-500 hover:text-red-400 break-all flex items-center"
+        >
+          {resetLinks}
+          <svg className="w-4 h-4 ml-1 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+          </svg>
+        </a>
+
+        <button onClick={()=>copyLink(resetLinks)} class="my-4 w-full py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out">
+   {copied ? 'Successfully Copied' : ' Copy Link' }
+</button>
+       
+      </div>
+      ) : (
+        <p className="text-yellow-400">
+          Please contact your seller to obtain a valid reset link.
+        </p>
+      )}
+    </div>
+  </div>
+}
               </div>
             </div>
             
