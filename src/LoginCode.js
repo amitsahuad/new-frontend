@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const translations = {
   en: {
@@ -32,7 +32,6 @@ Completar Inicio de Sesión: Toca o haz clic en "Sign In" para acceder a tu cuen
     fetching: "Cargando...",
     successMessage: "Tu código: ",
     errorMessage: "Ocurrió un error. Por favor, inténtalo de nuevo.",
-    stepsTitle: "Cómo obtener tu código de inicio de sesión"
   },
   ph: {
     title: "Kunin ang Iyong Netflix Login Code",
@@ -50,7 +49,6 @@ Kumpletuhin ang Pag-sign In: I-tap o i-click ang "Sign In" upang ma-access ang i
     fetching: "Kinukuha...",
     successMessage: "Iyong Code: ",
     errorMessage: "Nagkaroon ng error. Paki-subukan muli.",
-    stepsTitle: "Paano Makukuha ang Iyong Sign-In Code"
   },
   id: {
     title: "Dapatkan Kode Masuk Netflix Anda",
@@ -68,7 +66,6 @@ Selesaikan Masuk: Ketuk atau klik "Sign In" untuk mengakses akun Netflix Anda.`,
     fetching: "Memuat...",
     successMessage: "Kode Anda: ",
     errorMessage: "Terjadi kesalahan. Silakan coba lagi.",
-    stepsTitle: "Cara Mendapatkan Kode Masuk Anda"
   }
 };
 
@@ -114,38 +111,7 @@ const LoginCode = ({ lan }) => {
   return (
     <div className="flex max-h-screen max-w-full overflow-auto items-center justify-center bg-black text-white p-2 sm:p-4">
       <div className="relative z-10 w-full max-w-md bg-black bg-opacity-80 rounded-lg shadow-xl p-3 sm:p-6 border border-gray-800">
-        <div className="flex justify-center mb-4 sm:mb-6">
-        </div>
-
         <h1 className="text-xl sm:text-2xl font-bold text-center mb-3 sm:mb-4">{translations[country].title}</h1>
-
-        {/* Always show steps */}
-        <div className="mb-4 sm:mb-6 bg-gray-900 rounded-md p-2 sm:p-4 border border-gray-700">
-          <h2 className="text-base sm:text-lg font-semibold text-red-600 mb-2 sm:mb-3 text-center">
-            {translations[country].stepsTitle}
-          </h2>
-          <ol className="list-decimal pl-4 sm:pl-5 space-y-1 sm:space-y-2 text-xs sm:text-sm">
-            {translations[country].steps.split('\n').map((step, index) => {
-              const urlMatch = step.match(/(https?:\/\/[^\s]+)/);
-              return (
-                <li key={index} className="text-gray-300">
-                  {urlMatch ? (
-                    <a
-                      href={urlMatch[1]}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-500 hover:underline"
-                    >
-                      {step}
-                    </a>
-                  ) : (
-                    step
-                  )}
-                </li>
-              );
-            })}
-          </ol>
-        </div>
 
         <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
           <div className="relative">
@@ -191,4 +157,22 @@ const LoginCode = ({ lan }) => {
 
         {code && (
           <div className="mt-3 sm:mt-4 bg-gray-900 border border-green-600 rounded-md p-2 sm:p-4 flex items-start sm:items-center">
-            <svg className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5 sm:mt-0" fill="none"
+            <svg className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5 sm:mt-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div className="flex-1 min-w-0">
+              <span className="text-green-500 font-medium text-xs sm:text-sm">{translations[country].successMessage}</span>
+              {isValidUrl(code) ? (
+                <a href={code} target="_blank" rel="noopener noreferrer" className="block text-red-500 hover:underline mt-1 text-xs sm:text-sm truncate">
+                  Click To Update
+                </a>
+              ) : (
+                <span className="text-sm sm:text-lg font-mono block mt-1 bg-gray-800 py-1 px-2 rounded select-all overflow-x-auto">{code}</span>
+              )}
+            </div>
+          </div>
+        )}
+
+        {error && (
+          <div className="mt-3 sm:mt-4 bg-gray-900 border border-red-600 rounded-md p-2 sm:p-4 flex items-center">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5 text-red-500 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="
