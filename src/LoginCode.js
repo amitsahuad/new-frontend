@@ -14,8 +14,7 @@ const translations = {
       getCode: "Get Code",
       fetching: "Fetching...",
       successMessage: "Your Code: ",
-      errorMessage: "An error occurred. Please try again.",
-      stepsTitle: "How To Get Your Sign-In Code"
+      errorMessage: "An error occurred. Please try again."
   },
   es: {
       title: "Obtén tu código de inicio de sesión de Netflix",
