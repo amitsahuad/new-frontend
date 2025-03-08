@@ -15,8 +15,6 @@ const translations = {
       fetching: "Fetching...",
       successMessage: "Your Code: ",
       errorMessage: "An error occurred. Please try again.",
-      toggleSteps: "Show sign in steps",
-      hideSteps: "Hide sign in steps",
       stepsTitle: "How To Get Your Sign-In Code"
   },
   es: {
