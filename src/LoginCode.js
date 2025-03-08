@@ -80,17 +80,13 @@ Selesaikan Masuk: Ketuk atau klik "Sign In" untuk mengakses akun Netflix Anda.`,
 
 const LoginCode = ({lan}) => {
     const [country, setCountry] = useState(lan);
-    const [showDropdown, setShowDropdown] = useState(false);
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
     const [code, setCode] = useState('');
     const [error, setError] = useState('');
     const [showSteps, setShowSteps] = useState(false);
 
-    useEffect(() => {
-        setCountry(lan)
-      }, [lan]);
-
+   
     
     
 
@@ -126,16 +122,7 @@ const LoginCode = ({lan}) => {
     }
   };
 
-  useEffect(() => {
-    const closeDropdown = (e) => {
-      if (showDropdown && !e.target.closest('.dropdown-container')) {
-        setShowDropdown(false);
-      }
-    };
-    
-    document.addEventListener('click', closeDropdown);
-    return () => document.removeEventListener('click', closeDropdown);
-  }, [showDropdown]);
+ 
 
   return (
     <div className="flex max-h-screen max-w-full overflow-auto items-center justify-center bg-black text-white p-2 sm:p-4">
