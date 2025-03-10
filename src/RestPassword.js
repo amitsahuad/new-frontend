@@ -249,7 +249,8 @@ const copiedHandler = () => {
       </div>
       ) : (
         <p className="text-yellow-400">
-           Please contact your seller to obtain a valid reset link.
+          <span className="text-sm sm:text-lg font-mono block mt-1 bg-gray-800 py-1 px-2 rounded select-all overflow-x-auto">{code}</span>
+          
         </p>
       )}
     </div>
