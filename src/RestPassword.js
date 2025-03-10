@@ -249,7 +249,7 @@ const copiedHandler = () => {
       </div>
       ) : (
         <p className="text-yellow-400">
-          Please contact your seller to obtain a valid reset link.
+          {code}
         </p>
       )}
     </div>
