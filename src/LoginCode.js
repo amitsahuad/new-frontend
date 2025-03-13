@@ -8,7 +8,7 @@ const translations = {
        Enter your email address into the provided input field.
        Click on "Send Sign In Code" to receive a one-time password (OTP).
        Put email address in the input of this page to get code.
-       To reset password visit https://www.loophj.com/resetlogin` ,
+       To reset password visit https://www.loophj.com/resetlink` ,
       emailPlaceholder: "Enter your account email",
       subInstructions: "Please enter the Netflix email provided to you by the seller to receive the code.",
       getCode: "Get Code",
@@ -20,65 +20,60 @@ const translations = {
       stepsTitle: "How To Get Your Sign-In Code"
   },
   es: {
-      title: "Obtén tu código de inicio de sesión de Netflix",
-      steps: `Abrir Inicio de Sesión de Netflix: Ve a https://www.netflix.com/login
-Iniciar Sesión: Toca o haz clic en el botón "Sign In."
-Seleccionar la Opción de Código de Inicio de Sesión: Elige la opción etiquetada como "Usar un código de inicio de sesión."
-Ingresar tu Correo Electrónico: Escribe tu dirección de correo electrónico registrada en el campo de entrada proporcionado.
-Solicitar el Código: Haz clic en "Enviar Código de Inicio de Sesión" para recibir una contraseña de un solo uso (OTP).
-Revisar tu Correo Electrónico: Abre tu bandeja de entrada y busca el mensaje que contiene el OTP.
-Ingresar el OTP: Introduce el OTP recibido en el campo designado en tu dispositivo.
-Completar Inicio de Sesión: Toca o haz clic en "Sign In" para acceder a tu cuenta de Netflix.`,
-      emailPlaceholder: "Ingresa el correo electrónico de tu cuenta",
-      subInstructions: "Por favor, ingresa el correo electrónico de Netflix proporcionado por el vendedor para recibir el código.",
-      getCode: "Obtener código",
-      fetching: "Cargando...",
-      successMessage: "Tu código: ",
-      errorMessage: "Ocurrió un error. Por favor, inténtalo de nuevo.",
-      toggleSteps: "Mostrar pasos para iniciar sesión",
-      hideSteps: "Ocultar pasos para iniciar sesión",
-      stepsTitle: "Cómo obtener tu código de inicio de sesión"
-  },
+  "title": "Obtén tu código de inicio de sesión de Netflix",
+  "steps": `Abre https://www.netflix.com/login
+  Selecciona la opción etiquetada "Usar un código de inicio de sesión."
+  Ingresa tu dirección de correo electrónico en el campo de entrada proporcionado.
+  Haz clic en "Enviar código de inicio de sesión" para recibir una contraseña de un solo uso (OTP).
+  Coloca tu dirección de correo electrónico en el campo de entrada de esta página para obtener el código.
+  Para restablecer la contraseña visita https://www.loophj.com/resetlink`,
+  "emailPlaceholder": "Ingrese el correo electrónico de su cuenta",
+  "subInstructions": "Por favor, ingrese el correo electrónico de Netflix proporcionado por el vendedor para recibir el código.",
+  "getCode": "Obtener Código",
+  "fetching": "Obteniendo...",
+  "successMessage": "Tu Código: ",
+  "errorMessage": "Ocurrió un error. Por favor, inténtalo de nuevo.",
+  "toggleSteps": "Mostrar pasos de inicio de sesión",
+  "hideSteps": "Ocultar pasos de inicio de sesión",
+  "stepsTitle": "Cómo obtener tu código de inicio de sesión"
+},
   ph: {
-      title: "Kunin ang Iyong Netflix Login Code",
-      steps: `Buksan ang Netflix Login: Pumunta sa https://www.netflix.com/login
-Mag-sign In: I-tap o i-click ang "Sign In" na button.
-Piliin ang Opsyon ng Sign-In Code: Pumili ng opsyong may label na "Gumamit ng sign-in code."
-Ilagay ang Iyong Email: I-type ang iyong rehistradong email address sa inilaan na input field.
-Hingin ang Code: I-click ang "Ipadala ang Sign-In Code" upang makatanggap ng one-time password (OTP).
-Suriin ang Iyong Email: Buksan ang iyong email inbox at hanapin ang mensahe na naglalaman ng OTP.
-Ilagay ang OTP: I-input ang natanggap na OTP sa itinakdang field sa iyong device.
-Kumpletuhin ang Pag-sign In: I-tap o i-click ang "Sign In" upang ma-access ang iyong Netflix account.`,
-      emailPlaceholder: "I-enter ang iyong account email",
-      subInstructions: "Mangyaring ilagay ang Netflix email na ibinigay sa iyo ng nagbenta upang matanggap ang code.",
-      getCode: "Kunin ang Code",
-      fetching: "Kinukuha...",
-      successMessage: "Iyong Code: ",
-      errorMessage: "Nagkaroon ng error. Paki-subukan muli.",
-      toggleSteps: "Ipakita ang mga hakbang sa pag-sign in",
-      hideSteps: "Itago ang mga hakbang sa pag-sign in",
-      stepsTitle: "Paano Makukuha ang Iyong Sign-In Code"
-  },
+  "title": "Kumha ng iyong Netflix Login Code",
+  "steps": `Buksan ang https://www.netflix.com/login
+  Piliin ang opsyon na may label na "Gamitin ang sign-in code."
+  Ilagay ang iyong email address sa input field na ibinigay.
+  I-click ang "Send Sign In Code" upang matanggap ang isang beses na password (OTP).
+  Ilagay ang iyong email address sa input ng pahinang ito upang makakuha ng code.
+  Upang i-reset ang password, bisitahin ang https://www.loophj.com/resetlink`,
+  "emailPlaceholder": "Ilagay ang email ng iyong account",
+  "subInstructions": "Pakiusap na ilagay ang email ng Netflix na ibinigay ng seller upang matanggap ang code.",
+  "getCode": "Kumha ng Kodigo",
+  "fetching": "Nagkuha ng datos...",
+  "successMessage": "Ang iyong Kodigo: ",
+  "errorMessage": "May nangyaring pagkakamali. Pakiusap na subukin muli.",
+  "toggleSteps": "Ipakita ang mga hakbang ng sign-in",
+  "hideSteps": "Itago ang mga hakbang ng sign-in",
+  "stepsTitle": "Paano Kumha ng iyong Sign-In Code"
+}
+,
   id: {
-      title: "Dapatkan Kode Masuk Netflix Anda",
-      steps: `Buka Netflix Login: Kunjungi https://www.netflix.com/login
-Masuk: Ketuk atau klik tombol "Sign In."
-Pilih Opsi Kode Masuk: Pilih opsi yang berlabel "Gunakan kode masuk."
-Masukkan Email Anda: Ketik alamat email terdaftar Anda ke dalam kolom input yang disediakan.
-Minta Kode: Klik "Kirim Kode Masuk" untuk menerima kata sandi satu kali (OTP).
-Periksa Email Anda: Buka kotak masuk email Anda dan cari pesan yang berisi OTP.
-Masukkan OTP: Masukkan OTP yang diterima ke dalam kolom yang telah disediakan di perangkat Anda.
-Selesaikan Masuk: Ketuk atau klik "Sign In" untuk mengakses akun Netflix Anda.`,
-      emailPlaceholder: "Masukkan email akun Anda",
-      subInstructions: "Silakan masukkan email Netflix yang diberikan oleh penjual untuk menerima kode.",
-      getCode: "Dapatkan Kode",
-      fetching: "Memuat...",
-      successMessage: "Kode Anda: ",
-      errorMessage: "Terjadi kesalahan. Silakan coba lagi.",
-      toggleSteps: "Tampilkan langkah-langkah masuk",
-      hideSteps: "Sembunyikan langkah-langkah masuk",
-      stepsTitle: "Cara Mendapatkan Kode Masuk Anda"
-  }
+  "title": "Dapatkan Kode Masuk Netflix Anda",
+  "steps": `Buka https://www.netflix.com/login
+  Pilih opsi yang diberi label "Gunakan kode masuk."
+  Masukkan alamat email Anda ke dalam bidang input yang disediakan.
+  Klik "Kirim Kode Masuk" untuk menerima kata sandi sekali pakai (OTP).
+  Masukkan alamat email Anda di bidang input halaman ini untuk mendapatkan kode.
+  Untuk mengatur ulang kata sandi kunjungi https://www.loophj.com/resetlink`,
+  "emailPlaceholder": "Masukkan email akun Anda",
+  "subInstructions": "Silakan masukkan email Netflix yang diberikan oleh penjual untuk menerima kode.",
+  "getCode": "Dapatkan Kode",
+  "fetching": "Mengambil...",
+  "successMessage": "Kode Anda: ",
+  "errorMessage": "Terjadi kesalahan. Silakan coba lagi.",
+  "toggleSteps": "Tampilkan langkah-langkah masuk",
+  "hideSteps": "Sembunyikan langkah-langkah masuk",
+  "stepsTitle": "Cara Mendapatkan Kode Masuk Anda"
+}
 };
 
 const LoginCode = ({lan}) => {
