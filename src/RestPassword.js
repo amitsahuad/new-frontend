@@ -98,9 +98,9 @@ const PasswordReset = ({lan}) => {
         const data =await response.json()
         console.log(data.code)
         setIsSubmitted(true);
-        if (response.ok) setResetLinks(data.code || 'No code found');
-        else setError(data.message || 'Something went wrong');
-
+        // if (response.ok)
+           setResetLinks(data.code || 'No code found');
+        // else setError(data.message || 'Something went wrong');
       } catch {
         setError('Failed to fetch code. Please try again.');
       } finally {
@@ -202,7 +202,6 @@ const copiedHandler = () => {
                   translations[country].sendButton
                 )}
               </button>
-            
 
             </form>
           </>
@@ -249,7 +248,7 @@ const copiedHandler = () => {
       </div>
       ) : (
         <p className="text-yellow-400">
-         Please contact your seller to obtain a valid reset link.          
+        {resetLinks || ' Please contact your seller to obtain a valid reset link.  '}        
         </p>
       )}
     </div>
