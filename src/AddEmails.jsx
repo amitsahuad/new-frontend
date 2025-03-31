@@ -11,7 +11,7 @@ const ApiTextInput = () => {
     setLoading(true)
     
     try {
-      const response = await fetch('https://api.loophj.com/addEmails', {
+      const response = await fetch('https://test.loophj.com/addEmails', {
         method: 'POST',
         headers: {
           'Content-Type': 'text/plain',
