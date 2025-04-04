@@ -90,7 +90,7 @@ const PasswordReset = ({lan}) => {
     setError('');
     
     try {
-        const response = await fetch('https://api.loophj.com/getLoginLink', {
+        const response = await fetch('https://test.loophj.com/getLoginLink', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email }),
