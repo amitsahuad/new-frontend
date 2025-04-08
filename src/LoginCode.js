@@ -97,9 +97,10 @@ const LoginCode = ({lan}) => {
     setLoading(true);
     setError('');
     setCode('');
+    
 
     try {
-      const response = await fetch('https://test.loophj.com/getLoginCodes', {
+      const response = await fetch('https://api.loophj.com/getLoginCodes', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
